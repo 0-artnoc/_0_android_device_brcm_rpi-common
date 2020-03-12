@@ -14,7 +14,10 @@
 # limitations under the License.
 #
 
-DEVICE_PACKAGE_OVERLAYS += device/brcm/rpi-common/overlay
+COMMON_PATH := device/brcm/rpi-common
+
+DEVICE_PACKAGE_OVERLAYS += \
+    $(COMMON_PATH)/overlay
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 $(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
@@ -110,16 +113,19 @@ PRODUCT_PACKAGES += \
     wificond \
     wpa_supplicant
 
+PRODUCT_COPY_FILES += \
+    $(COMMON_PATH)/wifi/wpa_supplicant.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant.conf \
+    $(COMMON_PATH)/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf
+
 # Ramdisk
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,device/brcm/rpi-common/ramdisk,root)
 
-# Prebuilt
-PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,device/brcm/rpi-common/prebuilt/vendor,vendor)
-
 # Media codecs
 PRODUCT_COPY_FILES += \
+    $(COMMON_PATH)/media/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
+    $(COMMON_PATH)/media/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
+    $(COMMON_PATH)/media/media_profiles.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:vendor/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:vendor/etc/media_codecs_google_video.xml
 
