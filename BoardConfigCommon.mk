@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/brcm/rpi3
+COMMON_PATH := device/brcm/rpi-common
 
 # Platform
 TARGET_NO_BOOTLOADER := true
@@ -29,9 +29,10 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := cortex-a53
 
 # Kernel
+TARGET_KERNEL_ARCH := arm
+TARGET_KERNEL_HEADER_ARCH := arm
 BOARD_KERNEL_IMAGE_NAME := zImage
-TARGET_KERNEL_CONFIG := lineageos_rpi3_defconfig
-TARGET_KERNEL_SOURCE := kernel/brcm/rpi3
+TARGET_KERNEL_SOURCE := kernel/brcm/rpi
 
 # Audio
 USE_XML_AUDIO_POLICY_CONF := 1
@@ -40,8 +41,8 @@ USE_XML_AUDIO_POLICY_CONF := 1
 TARGET_USES_64_BIT_BINDER := true
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
-BOARD_CUSTOM_BT_CONFIG := $(LOCAL_PATH)/bluetooth/vnd_rpi3.txt
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(COMMON_PATH)/bluetooth/include
+BOARD_CUSTOM_BT_CONFIG := $(COMMON_PATH)/bluetooth/include/vnd_rpi.txt
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 
@@ -49,6 +50,9 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 #BOARD_GPU_DRIVERS := vc4
 TARGET_USES_HWC2 := true
 USE_OPENGL_RENDERER := true
+
+# HIDL
+DEVICE_MANIFEST_FILE := device/brcm/rpi-common/manifest.xml
 
 # Memory
 MALLOC_SVELTE := true
@@ -65,7 +69,7 @@ TARGET_USERIMAGES_SPARSE_EXT_DISABLED := true
 TARGET_USERIMAGES_USE_EXT4 := true
 
 # SELinux
-BOARD_SEPOLICY_DIRS += device/brcm/rpi3/sepolicy
+BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy
 
 # Wifi
 BOARD_WLAN_DEVICE := bcmdhd

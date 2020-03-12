@@ -14,12 +14,11 @@
 # limitations under the License.
 #
 
-DEVICE_PACKAGE_OVERLAYS += device/brcm/rpi3/overlay
+DEVICE_PACKAGE_OVERLAYS += device/brcm/rpi-common/overlay
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/go_defaults.mk)
 $(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
-$(call inherit-product, vendor/brcm/rpi3/rpi3-vendor.mk)
+$(call inherit-product, vendor/brcm/rpi-common/rpi-common-vendor.mk)
 
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := mdpi
@@ -46,7 +45,9 @@ PRODUCT_COPY_FILES += \
 # Bluetooth
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0-impl \
-    android.hardware.bluetooth@1.0-service \
+    android.hardware.bluetooth@1.0-service
+
+PRODUCT_PACKAGES += \
     libbt-vendor
 
 # DRM
@@ -111,11 +112,11 @@ PRODUCT_PACKAGES += \
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,device/brcm/rpi3/ramdisk,root)
+    $(call find-copy-subdir-files,*,device/brcm/rpi-common/ramdisk,root)
 
 # Prebuilt
 PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,device/brcm/rpi3/prebuilt/vendor,vendor)
+    $(call find-copy-subdir-files,*,device/brcm/rpi-common/prebuilt/vendor,vendor)
 
 # Media codecs
 PRODUCT_COPY_FILES += \
