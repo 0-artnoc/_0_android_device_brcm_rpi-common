@@ -52,10 +52,13 @@ TARGET_USES_HWC2 := true
 USE_OPENGL_RENDERER := true
 
 # HIDL
-DEVICE_MANIFEST_FILE := device/brcm/rpi-common/manifest.xml
+DEVICE_MANIFEST_FILE := $(COMMON_PATH)/manifest.xml
 
 # Memory
 MALLOC_SVELTE := true
+
+# Properties
+TARGET_SYSTEM_PROP += $(COMMON_PATH)/system.prop
 
 # Partition sizes
 BOARD_FLASH_BLOCK_SIZE := 4096
