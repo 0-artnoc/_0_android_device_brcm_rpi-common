@@ -1,10 +1,12 @@
 
-# Bluetooth
-ro.rfkilldisabled=1
-
 # Display
 #debug.drm.mode.force=1280x720
+#debug.hwui.use_partial_updates=0
+#hwc.drm.device=/dev/dri/card1
+#hwc.drm.use_overlay_planes=0
 persist.sys.ui.hw=disable
+#ro.hardware.gralloc=minigbm
+#ro.hardware.hwcomposer=drm_minigbm
 ro.opengles.version=131072
 ro.sf.lcd_density=160
 
@@ -14,11 +16,9 @@ ro.kernel.android.gps=ttyACM0
 # Media
 persist.media.treble_omx=false
 
-# Memory
-ro.config.max_starting_bg=4
-
-# Storage
-ro.sys.sdcardfs=true
+# USB
+persist.sys.usb.config=mtp
 
 # Wifi
 wifi.interface=wlan0
+
