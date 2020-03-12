@@ -1,3 +1,4 @@
+import init.rpi3.usb.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug mode=0755
